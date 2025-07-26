@@ -115,7 +115,7 @@ services:
       PGDATA: /var/lib/postgresql/data/guacamole
       POSTGRES_DB: guacamole_db
       POSTGRES_USER: guacamole_user
-      POSTGRES_USER: ${POSTGRESQL_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
     image: postgres:15.2-alpine
     networks:
       - guacnetwork_compose
