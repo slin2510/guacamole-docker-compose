@@ -114,7 +114,6 @@ services:
     environment:
       PGDATA: /var/lib/postgresql/data/guacamole
       POSTGRES_DB: guacamole_db
-      POSTGRES_PASSWORD: 'ChooseYourOwnPasswordHere1234'
       POSTGRES_USER: guacamole_user
     image: postgres:15.2-alpine
     networks:
@@ -136,7 +135,6 @@ services:
       GUACD_HOSTNAME: guacd
       POSTGRESQL_DATABASE: guacamole_db
       POSTGRESQL_HOSTNAME: postgres
-      POSTGRESQL_PASSWORD: 'ChooseYourOwnPasswordHere1234'
       POSTGRESQL_USER: guacamole_user
       RECORDING_SEARCH_PATH: /record
     image: guacamole/guacamole:1.6.0
@@ -150,19 +148,3 @@ services:
 ## enable next line when using nginx
     - 8080/tcp
     restart: always
-
-########### optional ##############
-  # nginx
-  nginx:
-   container_name: nginx_guacamole_compose
-   restart: always
-   image: nginx:latest
-   volumes:
-   - ./nginx/templates:/etc/nginx/templates:ro
-   - ./nginx/ssl/self.cert:/etc/nginx/ssl/self.cert:ro
-   - ./nginx/ssl/self-ssl.key:/etc/nginx/ssl/self-ssl.key:ro
-   ports:
-   - 8443:443
-   networks:
-     - guacnetwork_compose
-####################################################################################
