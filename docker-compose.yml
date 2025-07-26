@@ -115,6 +115,7 @@ services:
       PGDATA: /var/lib/postgresql/data/guacamole
       POSTGRES_DB: guacamole_db
       POSTGRES_USER: guacamole_user
+      POSTGRES_USER: ${POSTGRESQL_PASSWORD}
     image: postgres:15.2-alpine
     networks:
       - guacnetwork_compose
@@ -136,6 +137,7 @@ services:
       POSTGRESQL_DATABASE: guacamole_db
       POSTGRESQL_HOSTNAME: postgres
       POSTGRESQL_USER: guacamole_user
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
       RECORDING_SEARCH_PATH: /record
     image: guacamole/guacamole:1.6.0
     networks:
@@ -145,6 +147,4 @@ services:
     ports:
 ## enable next line if not using nginx
     - 8080:8080/tcp # Guacamole is on :8080/guacamole, not /.
-## enable next line when using nginx
-    - 8080/tcp
     restart: always
